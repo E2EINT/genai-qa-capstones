@@ -16,3 +16,27 @@ Tech Stack:
 - Large Language Models (LLMs)
 - RAG (Embeddings + Vector Databases)
 - Playwright
+
+
+- ## ⚠️ Disclaimer
+
+This repository is a **learning-focused, demonstration project** created to showcase applied skills in:
+
+- Generative AI
+- Retrieval-Augmented Generation (RAG)
+- Intelligent QA automation
+- LLM-assisted test case generation
+
+### Important Notes
+
+- This project is **not intended as a production-ready framework**.
+- It does **not include proprietary data, secrets, or enterprise integrations**.
+- The primary purpose is to demonstrate **architecture, reasoning, and workflow design**, not to distribute a reusable commercial solution.
+
+### Usage
+
+- You are welcome to **review, learn, and experiment** with this code for educational purposes.
+- **Commercial usage or redistribution** without explicit permission is not allowed.
+
+If you are a recruiter or hiring manager:
+> This repository represents how I **think, design, and evolve systems**, not just the final output.
