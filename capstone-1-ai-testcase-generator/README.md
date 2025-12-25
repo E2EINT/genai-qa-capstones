@@ -27,3 +27,15 @@ PDF → Text Extraction → Chunking → Embeddings → Semantic Retrieval → L
 
 ## Status
 Completed core pipeline. LLM integration can be swapped with OpenAI / Azure / local models.
+
+## Architecture Diagram
+![Architecture](architecture.png)
+
+## How to Run (Local)
+1. Place a requirement PDF in the `data/` folder
+2. Run `read_pdf.py` to extract text
+3. Run `chunk_text.py` to create chunks
+4. Run `embed_chunks.py` to generate embeddings
+5. Run `retrieve_context.py` for semantic retrieval
+6. Run `generate_testcases.py` to create test cases
+7. (Optional) Run `generate_playwright_tests.py` for automation output
