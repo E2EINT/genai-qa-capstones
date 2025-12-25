@@ -1,23 +1,48 @@
 # genai-qa-capstones
 Industry-grade GenAI and Agentic AI capstone projects for QA automation
 
-# GenAI QA Capstone Projects
+## 🧠 Architecture Overview — GenAI QA Test Case Generator
 
-This repository contains hands-on, industry-focused capstone projects applying
-Generative AI and Agentic AI patterns to Software Testing and QA automation.
+![GenAI QA RAG Pipeline](./genai-qa-rag-pipeline.png)
 
-## Capstone 1: AI Test Case Generator (RAG-based)
-- Converts requirement documents into structured test scenarios
-- Uses Retrieval-Augmented Generation (RAG)
-- Generates Playwright test skeletons using LLMs
+This project implements an **end-to-end Retrieval-Augmented Generation (RAG) pipeline** to automatically derive QA test cases and automation-ready outputs from requirement documents.
 
-Tech Stack:
-- Python
-- Large Language Models (LLMs)
-- RAG (Embeddings + Vector Databases)
-- Playwright
+### Pipeline Flow
 
+1. **Requirement PDFs**
+   - Input Software Requirement Specification (SRS) documents in PDF format.
 
+2. **Text Extraction**
+   - Parse and extract raw text from PDFs using Python-based ingestion.
+
+3. **Text Chunking**
+   - Split extracted text into smaller, semantically meaningful chunks.
+
+4. **Embedding Generation**
+   - Convert text chunks into vector embeddings using sentence-transformer models.
+
+5. **Vector Store (JSON-based)**
+   - Store embeddings in a lightweight **JSON-based vector store** for fast, local semantic search.
+   - Designed for transparency, portability, and demo-first workflows.
+
+6. **Semantic Retrieval**
+   - Retrieve the most relevant requirement chunks based on user queries or prompts.
+
+7. **LLM Processing (Local or Cloud)**
+   - Pass retrieved context to an LLM (Ollama / OpenAI / Azure OpenAI).
+   - Generate human-readable test scenarios using plain English prompts.
+
+8. **Test Case & Playwright Generation**
+   - Convert LLM output into structured test cases.
+   - Generate Playwright automation skeletons ready for execution.
+
+### Design Philosophy
+
+- **Local-first & transparent**
+- **No black-box frameworks**
+- **QA-focused, not demo-driven**
+- **Easily extensible to vector DBs (FAISS, Chroma, etc.) when needed**
+  
 - ## ⚠️ Disclaimer
 
 This repository is a **learning-focused, demonstration project** created to showcase applied skills in:
