@@ -11,7 +11,7 @@ def extract_text_from_pdf(pdf_path: Path) -> str:
 
 
 if __name__ == "__main__":
-    pdf_file = Path("../data/sample-requirements.pdf")
+    pdf_file = Path("../data/ShopEasy E-commerce Platform - Requirements Specification.pdf")
     extracted_text = extract_text_from_pdf(pdf_file)
 
     output_file = Path("../output/requirements_text.txt")
