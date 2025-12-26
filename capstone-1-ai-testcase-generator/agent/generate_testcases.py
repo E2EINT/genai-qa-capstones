@@ -20,18 +20,27 @@ Context Used:
 {context[:500]}...
 """
 
+
 if __name__ == "__main__":
-    retrieved_context_file = Path("../output/retrieved_context.txt")
+    # Resolve paths relative to THIS file
+    BASE_DIR = Path(__file__).resolve().parent.parent
+    OUTPUT_DIR = BASE_DIR / "output"
+
+    retrieved_context_file = OUTPUT_DIR / "retrieved_context.txt"
 
     if not retrieved_context_file.exists():
-        print("No retrieved context found. Run retrieval step first.")
-        exit(1)
+        raise FileNotFoundError(
+            f"Retrieved context not found at: {retrieved_context_file}\n"
+            f"Please run retrieval step first."
+        )
 
     context = retrieved_context_file.read_text(encoding="utf-8")
 
     test_cases = generate_test_cases(context)
 
-    output_file = Path("../output/generated_test_cases.txt")
+    output_file = OUTPUT_DIR / "generated_test_cases.txt"
     output_file.write_text(test_cases, encoding="utf-8")
 
-    print("Test cases generated successfully.")
+    print("✅ Test cases generated successfully.")
+    print(f"📄 Input: {retrieved_context_file}")
+    print(f"📝 Output: {output_file}")

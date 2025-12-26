@@ -15,12 +15,22 @@ def chunk_text(text: str, chunk_size: int = 500, overlap: int = 50) -> List[str]
 
 
 if __name__ == "__main__":
-    input_file = Path("../output/requirements_text.txt")
+    # Resolve paths relative to THIS file (robust)
+    BASE_DIR = Path(__file__).resolve().parent.parent
+    OUTPUT_DIR = BASE_DIR / "output"
+
+    input_file = OUTPUT_DIR / "requirements_text.txt"
+
+    if not input_file.exists():
+        raise FileNotFoundError(f"Input file not found: {input_file}")
+
     text = input_file.read_text(encoding="utf-8")
 
     chunks = chunk_text(text)
 
-    output_file = Path("../output/chunks.txt")
+    output_file = OUTPUT_DIR / "chunks.txt"
     output_file.write_text("\n\n---\n\n".join(chunks), encoding="utf-8")
 
-    print(f"Created {len(chunks)} text chunks.")
+    print(f"✅ Created {len(chunks)} text chunks.")
+    print(f"📝 Input: {input_file}")
+    print(f"📦 Output: {output_file}")

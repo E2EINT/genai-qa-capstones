@@ -1,0 +1,454 @@
+SOFTW ARE REQUIREMENTS SPECIFICA TION
+ShopEasy E-commerce Platform
+Version 1.0
+December 2024
+Document ID SRS-SHOPEASY -2024-001
+Project Name ShopEasy E-commerce Platform
+Version 1.0
+Date December 25, 2024
+Author Product Management Team
+Status Approved
+Table of Contents
+1. Introduction
+1.1 Purpose
+1.2 Scope
+1.3 Definitions and Acronyms
+2. Overall Description
+2.1 Product Perspective
+2.2 User Classes
+3. Functional Requirements
+3.1 User Registration and Authentication
+3.2 Product Browsing and Search
+3.3 Shopping Cart Management
+3.4 Checkout and Payment
+3.5 Order Management
+4. Non-Functional Requirements
+5. Use Cases
+1. INTRODUCTION
+1.1 Purpose
+This Software Requirements Specification (SRS) document describes the functional and non-functional requirements for the
+ShopEasy E-commerce Platform. The platform is designed to provide customers with a seamless online shopping experience
+while enabling merchants to manage their products, inventory , and orders ef ficiently .
+This document is intended for:
+Development team members
+Quality Assurance and Testing team
+Project stakeholders and management
+System architects and designers
+Documentation team
+1.2 Scope
+ShopEasy is a web-based B2C e-commerce platform that allows customers to browse products, add items to cart, make secure
+payments, and track their orders. The system will support multiple product categories, payment methods, and shipping options.
+Key Featur es:
+User registration and profile management
+Product catalog with search and filter capabilities
+Shopping cart and wishlist functionality
+Secure payment processing
+Order tracking and management
+Customer reviews and ratings
+Email notifications
+1.3 Definitions and Acronyms
+Term Definition
+SRS Software Requirements Specification
+UI User Interface
+API Application Programming Interface
+SKU Stock Keeping Unit
+OTP One-T ime Password
+Guest User User who shops without registration
+Registered User User with an account in the system
+2. OVERALL  DESCRIPTION
+2.1 Pr oduct Perspective
+ShopEasy is a standalone web application that integrates with third-party services including:
+Payment gateways (PayPal, Stripe, Credit/Debit cards)
+Shipping providers (FedEx, UPS, USPS)
+Email service providers (SendGrid)
+SMS notification services
+2.2 User  Classes
+User  Type Description Key Activities
+Guest UserVisitor without an
+accountBrowse products, view details, contact support
+Registered
+CustomerUser with an accountAll guest activities plus: purchase, track orders, save wishlist, write
+reviews
+Administrator System admin Manage users, products, orders, view reports
+3. FUNCTIONAL  REQUIREMENTS
+3.1 User  Registration and Authentication
+REQ-AUTH-001
+User  Registration
+The system shall allow new users to register by providing email address, password, full name, and phone number .
+Priority:  High
+Type: Functional
+Preconditions:  User must not have an existing account with the provided email
+Acceptance Criteria:
+Email must be unique and in valid format (example@domain.com)
+Password must be minimum 8 characters with at least 1 uppercase, 1 lowercase, 1 number , and 1 special
+character
+Phone number must be 10 digits
+All fields are mandatory
+System sends verification email upon successful registration
+User must verify email within 24 hours
+Success message displayed: "Registration successful. Please check your email to verify your account."
+REQ-AUTH-002
+User  Login
+The system shall allow registered users to login using their email and password.
+Priority:  High
+Type: Functional
+Preconditions:  User must have a registered and verified account
+Acceptance Criteria:
+System validates email and password combination
+Maximum 3 failed login attempts allowed within 15 minutes
+Account locked for 30 minutes after 3 failed attempts
+Error message for invalid credentials: "Invalid email or password"
+Successful login redirects to homepage or last visited page
+Session remains active for 24 hours or until logout
+"Remember me" option keeps user logged in for 30 days
+REQ-AUTH-003
+Password Reset
+The system shall allow users to reset their password via email verification.
+Priority:  High
+Type: Functional
+Acceptance Criteria:
+User clicks "For got Password" link on login page
+User enters registered email address
+System sends password reset link valid for 1 hour
+Link expires after first use or 1 hour , whichever comes first
+New password must meet password complexity requirements
+Confirmation email sent after successful password change
+3.2 Pr oduct Br owsing and Sear ch
+REQ-PROD-001
+Product Catalog Display
+The system shall display all available products in a grid view with product image, name, price, and ratings.
+Priority:  High
+Type: Functional
+Acceptance Criteria:
+Display 24 products per page
+Products shown in grid format (4 columns on desktop, 2 on mobile)
+Each product card shows: thumbnail image, product name, current price, original price (if discounted), discount
+percentage, star rating
+Pagination controls at bottom of page
+"Quick View" button on hover shows additional details
+Out-of-stock items displayed with "Out of Stock" badge
+REQ-PROD-002
+Product Sear ch
+The system shall provide a search functionality to find products by name, description, category , or SKU.
+Priority:  High
+Type: Functional
+Acceptance Criteria:
+Search bar visible on all pages in header
+Auto-suggest displays top 5 matching products as user types (minimum 3 characters)
+Search results page shows matching products with relevance sorting
+Display "No results found" message if no matches
+Search history saved for logged-in users (last 10 searches)
+Filters can be applied on search results
+REQ-PROD-003
+Product Filtering
+The system shall allow users to filter products by category , price range, brand, ratings, and availability .
+Priority:  Medium
+Type: Functional
+Acceptance Criteria:
+Filter panel displayed on left side of product listing page
+Multiple filters can be applied simultaneously
+Price range filter: slider with min/max values
+Category filter: checkbox list with product count
+Brand filter: searchable checkbox list
+Rating filter: 4 stars & above, 3 stars & above, etc.
+Applied filters shown as removable tags above product grid
+"Clear All Filters" button resets all selections
+Filter count updated dynamically as selections change
+REQ-PROD-004
+Product Details Page
+The system shall display comprehensive product information including images, specifications, price, availability , and
+customer reviews.
+Priority:  High
+Type: Functional
+Acceptance Criteria:
+Display product image gallery with zoom functionality (minimum 3 images)
+Show product name, brand, SKU, and price prominently
+Display availability status (In Stock / Out of Stock / Limited Stock)
+Show estimated delivery date based on customer location
+List product specifications in tabular format
+Display customer reviews with star ratings (latest 10 reviews)
+"Add to Cart" button with quantity selector
+"Add to Wishlist" button for registered users
+Related/Similar products section at bottom
+3.3 Shopping Cart Management
+REQ-CAR T-001
+Add to Cart
+The system shall allow users to add products to their shopping cart with specified quantity .
+Priority:  High
+Type: Functional
+Acceptance Criteria:
+Users can add products from product listing or details page
+Default quantity is 1, maximum is 10 per product
+System validates stock availability before adding
+Success message displayed: "Product added to cart"
+Cart icon in header shows updated item count
+If product already in cart, quantity is updated
+Cannot add out-of-stock items to cart
+Guest users can add items; cart persists for 7 days via cookies
+REQ-CAR T-002
+View Cart
+The system shall display all items in the cart with product details, quantity , price, and total amount.
+Priority:  High
+Type: Functional
+Acceptance Criteria:
+Cart page shows list of all added products
+Each item displays: image, name, price, quantity selector , subtotal, remove button
+Display cart summary: Subtotal, Shipping char ges, Tax, Total amount
+Apply coupon code section below cart items
+"Continue Shopping" and "Proceed to Checkout" buttons
+Empty cart shows message: "Y our cart is empty" with shop button
+Cart auto-updates when quantity changed
+REQ-CAR T-003
+Update Cart
+The system shall allow users to update item quantities or remove items from cart.
+Priority:  High
+Type: Functional
+Acceptance Criteria:
+Quantity can be increased/decreased using +/- buttons
+System validates stock availability when increasing quantity
+Prices and totals recalculated automatically
+"Remove" button deletes item from cart with confirmation
+Undo option available for 5 seconds after removal
+Warning message if quantity exceeds available stock
+3.4 Checkout and Payment
+REQ-CHECK-001
+Checkout Pr ocess
+The system shall provide a multi-step checkout process for order placement including shipping address, payment method,
+and order review .
+Priority:  High
+Type: Functional
+Preconditions:  User must have items in cart
+Acceptance Criteria:
+Step 1: Login/Register (skip if already logged in)
+Step 2: Enter shipping address with fields: Name, Address Line 1, Address Line 2, City , State, ZIP  Code, Phone
+Option to save address for future use
+Step 3: Select shipping method (Standard, Express, Next Day) with costs
+Step 4: Select payment method (Credit Card, Debit Card, PayPal, COD)
+Step 5: Review order summary before final submission
+Progress indicator showing current step
+Ability to edit previous steps before final submission
+REQ-CHECK-002
+Payment Pr ocessing
+The system shall securely process payments through integrated payment gateways.
+Priority:  Critical
+Type: Functional
+Acceptance Criteria:
+Support Credit/Debit card payments (V isa, MasterCard, Amex)
+Card number validation using Luhn algorithm
+CVV  is 3 digits (4 for Amex)
+Expiry date must be future date
+Integrate PayPal for alternative payment
+Cash on Delivery option available for orders under $500
+Payment confirmation displayed after successful transaction
+Transaction failure message with retry option
+All payment data transmitted over HTTPS
+Payment information not stored in database
+REQ-CHECK-003
+Order  Confirmation
+The system shall generate order confirmation with unique order ID after successful payment.
+Priority:  High
+Type: Functional
+Acceptance Criteria:
+Generate unique order ID in format: ORD-YYYYMMDD-XXXX
+Display order confirmation page with order details
+Send order confirmation email with order summary , items, total amount, shipping address
+Include estimated delivery date
+Provide "T rack Order" link in email
+Order saved in user's order history
+Cart emptied after successful order placement
+3.5 Order  Management
+REQ-ORDER-001
+Order  History
+The system shall display all past orders for registered users with order details and status.
+Priority:  Medium
+Type: Functional
+Preconditions:  User must be logged in
+Acceptance Criteria:
+Display orders in reverse chronological order (latest first)
+Show Order ID, date, total amount, payment method, status
+Filter options: Date range, Order status, Payment method
+Search by Order ID
+"View Details" button for each order
+Display paginated results (10 orders per page)
+Download invoice option for completed orders
+REQ-ORDER-002
+Order  Tracking
+The system shall allow users to track their order status in real-time.
+Priority:  Medium
+Type: Functional
+Acceptance Criteria:
+Display order status: Order Placed, Payment Confirmed, Processing, Shipped, Out for Delivery , Delivered
+Show timeline with timestamps for each status change
+Display shipping carrier name and tracking number when shipped
+Link to carrier's tracking page
+SMS/Email notification for each status change
+Estimated delivery date updated based on current status
+REQ-ORDER-003
+Order  Cancellation
+The system shall allow users to cancel orders before they are shipped.
+Priority:  Medium
+Type: Functional
+Acceptance Criteria:
+Cancel button available only for orders with status "Order Placed" or "Processing"
+Confirmation dialog: "Are you sure you want to cancel this order?"
+Reason for cancellation required (dropdown + text field)
+Refund initiated automatically for prepaid orders
+Refund processed within 5-7 business days
+Cancellation confirmation email sent
+Order status updated to "Cancelled"
+REQ-ORDER-004
+Return and Refund
+The system shall allow users to initiate return requests for delivered orders within 7 days of delivery .
+Priority:  Medium
+Type: Functional
+Acceptance Criteria:
+"Return" button available for 7 days after delivery
+User selects items to return (can be partial or full order)
+Reason for return required (dropdown): Damaged, Wrong item, Not as described, Changed mind
+Upload photos mandatory for damaged/wrong item claims
+Return request submitted for admin approval
+Return pickup scheduled after approval
+Refund initiated after item received and inspected
+Email notifications at each return status change
+4. NON-FUNCTIONAL  REQUIREMENTS
+4.1 Performance Requir ements
+REQ-PERF-001
+Page Load Time
+All pages shall load within 3 seconds under normal network conditions.
+Acceptance Criteria:
+Homepage load time: ≤ 2 seconds
+Product listing pages: ≤ 3 seconds
+Product details page: ≤ 2.5 seconds
+Checkout pages: ≤ 3 seconds
+Measured on 4G network with 50 Mbps download speed
+REQ-PERF-002
+Concurr ent Users
+The system shall support at least 10,000 concurrent users without performance degradation.
+Acceptance Criteria:
+Response time remains under 3 seconds for 10,000 concurrent users
+No transaction failures during peak load
+Database queries execute within 500ms
+API response time under 1 second
+4.2 Security Requir ements
+REQ-SEC-001
+Data Encryption
+All sensitive data shall be encrypted in transit and at rest.
+Acceptance Criteria:
+HTTPS (TLS 1.2 or higher) for all communications
+Passwords hashed using bcrypt with salt
+Payment information encrypted using PCI DSS standards
+Database encryption for sensitive fields
+REQ-SEC-002
+Session Management
+The system shall implement secure session management with automatic timeout.
+Acceptance Criteria:
+Session timeout after 30 minutes of inactivity
+Secure, HTTPOnly cookies for session management
+CSRF tokens for all state-changing operations
+Single sign-on prevention (one session per user)
+4.3 Usability Requir ements
+REQ-USAB-001
+Responsive Design
+The system shall be responsive and functional across all device types.
+Acceptance Criteria:
+Support desktop (1920x1080, 1366x768)
+Support tablets (iPad, Android tablets)
+Support mobile phones (iOS, Android)
+All features accessible on mobile devices
+Touch-friendly interface for mobile/tablet
+REQ-USAB-002
+Accessibility
+The system shall comply with WCAG 2.1 Level AA accessibility standards.
+Acceptance Criteria:
+Keyboard navigation support for all functions
+Screen reader compatibility
+Sufficient color contrast ratios (4.5:1 minimum)
+Alt text for all images
+Form labels and error messages accessible
+5. USE CASES
+5.1 Use Case: Complete Pur chase Flow
+Use Case ID:  UC-001
+Use Case Name:  Complete Product Purchase
+Actor:  Registered Customer
+Goal:  Successfully purchase a product from the platform
+Preconditions:
+User has a registered and verified account
+Product is in stock
+User has valid payment method
+Main Flow:
+1. User logs into the system
+2. User searches for a product or browses categories
+3. User clicks on a product to view details
+4. User selects quantity and clicks "Add to Cart"
+5. System adds product to cart and updates cart count
+6. User clicks on cart icon in header
+7. User reviews cart contents and clicks "Proceed to Checkout"
+8. System displays shipping address form (pre-filled if saved)
+9. User confirms or enters new shipping address
+10. User selects shipping method (Standard/Express/Next Day)
+11. User selects payment method and enters payment details
+12. User reviews order summary
+13. User clicks "Place Order" button
+14. System processes payment
+15. System generates order confirmation with Order ID
+16. System sends confirmation email
+17. User sees order confirmation page with tracking information
+Alternative Flows:
+A1: Pr oduct Out of Stock (Step 4)
+System displays "Out of Stock" message
+"Add to Cart" button disabled
+Option to "Notify Me" when back in stock
+A2: Payment Failur e (Step 14)
+System displays error message: "Payment failed. Please try again."
+User returned to payment page
+Order not created
+Cart items preserved
+Postconditions:
+Order created in system with unique Order ID
+Inventory updated (stock reduced)
+Confirmation email sent to user
+Cart emptied
+Order appears in user's order history
+5.2 Use Case: Return Pr oduct
+Use Case ID:  UC-002
+Use Case Name:  Initiate Product Return
+Actor:  Registered Customer
+Goal:  Return a delivered product and receive refund
+Preconditions:
+Order has been delivered
+Return window (7 days) has not expired
+User is logged in
+Main Flow:
+1. User navigates to "My Orders" section
+2. User finds the delivered order
+3. User clicks "Return" button
+4. System displays return form
+5. User selects items to return
+6. User selects return reason from dropdown
+7. User uploads photos (if damaged/wrong item)
+8. User submits return request
+9. System validates return eligibility
+10. System creates return request with Return ID
+11. System sends return confirmation email
+12. Admin reviews and approves return
+13. System schedules pickup
+14. Courier picks up item
+15. Admin inspects returned item
+16. System initiates refund
+17. User receives refund within 5-7 business days
+Alternative Flows:
+A1: Return W indow Expir ed
+System displays message: "Return window has expired"
+"Return" button disabled
+Contact support option provided
+A2: Return Rejected
+Admin rejects return (product damaged by customer)
+System sends rejection email with reason
+Item shipped back to customer
+No refund issued
+Note:  This r equir ements document serves as the foundation for test case generation. Each r equir ement with defined
+acceptance criteria should r esult in multiple test cases covering positive scenarios, negative scenarios, boundary
+conditions, and err or handling.
+End of Document
+Version 1.0 | December 2024
+ShopEasy E-commerce Platform - Software Requirements Specification

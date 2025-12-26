@@ -1,0 +1,25 @@
+
+Test Case 1: Valid Login
+- Given user is on login page
+- When user enters valid username and password
+- Then user should be logged in successfully
+
+Test Case 2: Invalid Password
+- Given user is on login page
+- When user enters valid username and invalid password
+- Then error message should be displayed
+
+Context Used:
+ User  Classes
+User  Type Description Key Activities
+Guest UserVisitor without an
+accountBrowse products, view details, contact support
+Registered
+CustomerUser with an accountAll guest activities plus: purchase, track orders, save wishlist, write
+reviews
+Administrator System admin Manage users, products, orders, view reports
+3. FUNCTIONAL  REQUIREMENTS
+3.1 User  Registration and Authentication
+REQ-AUTH-001
+User  Registration
+The system shall allow new users to register by providing email address...
