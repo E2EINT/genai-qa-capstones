@@ -1,0 +1,41 @@
+thoritative reference for development, quality assurance, and product management teams
+throughout the software development lifecycle. It is specifically designed to facilitate automated test
+case generation, Playwright-based UI automation, API testing, and RAG pipeline integration for
+intelligent test synthesis.
+1.2 Scope
+The E-Commerce Web Application is a full-featured B2C online retail platform providing end-to-end
+e-commerce functionality. The system includes user registration and authentica
+
+in OWASP top 10,000 common passwords list
+3.1.4 Success Flow
+1. User submits registration form → 2. System validates inputs → 3. System checks email uniqueness
+→ 4. System creates account (status: pending_verification) → 5. System generates UUID v4
+verification token → 6. System sends verification email → 7. User clicks link within 24 hours → 8.
+System activates account → 9. Redirect to login with success message
+3.1.5 Error Scenarios
+Error
+Message
+HTTP Status
+Email exists
+Email already register
+
+s
+ Character requirements: uppercase, lowercase, digit, special character
+ No common passwords (OWASP top 10K list)
+ No sequential characters (abc, 123)
+ No username/email inclusion
+ Password history check (last 5 passwords)
+5.3 Input Sanitization
+Input Type
+Validation Rules
+Sanitization
+User Input Text
+Max length enforcement
+HTML entity encoding, XSS prevention
+Numeric Fields
+Type checking, range validation
+Parse and validate as number
+Dates
+ISO 8601 format
+Parse and validate date range
+Fi

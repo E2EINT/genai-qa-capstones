@@ -1,0 +1,137 @@
+{
+  "feature": "Login",
+  "tests": [
+    {
+      "name": "Invalid Email Format",
+      "type": "negative",
+      "steps": [
+        {
+          "action": "goto",
+          "value": "https://practicetestautomation.com/practice-test-login/"
+        },
+        {
+          "action": "fill",
+          "selector": "#username",
+          "value": "invalid_email"
+        },
+        {
+          "action": "fill",
+          "selector": "#password",
+          "value": "Password123"
+        }
+      ],
+      "expect": "Email format error"
+    },
+    {
+      "name": "No Password Input",
+      "type": "negative",
+      "steps": [
+        {
+          "action": "goto",
+          "value": "https://practicetestautomation.com/practice-test-login/"
+        },
+        {
+          "action": "fill",
+          "selector": "#username",
+          "value": "student"
+        }
+      ],
+      "expect": "Password required error"
+    },
+    {
+      "name": "Common Password",
+      "type": "negative",
+      "steps": [
+        {
+          "action": "goto",
+          "value": "https://practicetestautomation.com/practice-test-login/"
+        },
+        {
+          "action": "fill",
+          "selector": "#username",
+          "value": "student"
+        },
+        {
+          "action": "fill",
+          "selector": "#password",
+          "value": "Password123"
+        }
+      ],
+      "expect": "Common password error"
+    },
+    {
+      "name": "Sequential Characters",
+      "type": "negative",
+      "steps": [
+        {
+          "action": "goto",
+          "value": "https://practicetestautomation.com/practice-test-login/"
+        },
+        {
+          "action": "fill",
+          "selector": "#username",
+          "value": "abc123"
+        },
+        {
+          "action": "fill",
+          "selector": "#password",
+          "value": "Password123"
+        }
+      ],
+      "expect": "Sequential characters error"
+    },
+    {
+      "name": "Character Requirements",
+      "type": "negative",
+      "steps": [
+        {
+          "action": "goto",
+          "value": "https://practicetestautomation.com/practice-test-login/"
+        },
+        {
+          "action": "fill",
+          "selector": "#username",
+          "value": "abc"
+        }
+      ],
+      "expect": "Character requirements error"
+    },
+    {
+      "name": "No Username Input",
+      "type": "negative",
+      "steps": [
+        {
+          "action": "goto",
+          "value": "https://practicetestautomation.com/practice-test-login/"
+        },
+        {
+          "action": "fill",
+          "selector": "#password",
+          "value": "Password123"
+        }
+      ],
+      "expect": "Username required error"
+    },
+    {
+      "name": "Invalid Password Format",
+      "type": "negative",
+      "steps": [
+        {
+          "action": "goto",
+          "value": "https://practicetestautomation.com/practice-test-login/"
+        },
+        {
+          "action": "fill",
+          "selector": "#username",
+          "value": "student"
+        },
+        {
+          "action": "fill",
+          "selector": "#password",
+          "value": "abc"
+        }
+      ],
+      "expect": "Password format error"
+    }
+  ]
+}

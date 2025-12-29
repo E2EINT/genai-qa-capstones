@@ -1,5 +1,10 @@
+<<<<<<< HEAD
 # genai-qa-project
 Industry-grade GenAI and Agentic AI  projects for QA automation
+=======
+# genai-qa- Project
+Industry-grade GenAI and Agentic AI Projects for QA automation
+>>>>>>> 0f8f4e1 (Refactor project structure: remove naming and add automation pipeline)
 
 ## 🧠 Architecture Overview — GenAI QA Test Case Generator
 
