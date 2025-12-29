@@ -1,4 +1,4 @@
-# Capstone 1: AI Test Case Generator using RAG
+# Project 1: AI Test Case Generator using RAG
 
 ## Problem
 Manual test case design from requirement documents is time-consuming and error-prone.
